@@ -20,7 +20,7 @@ from loguru import logger
 def get_zotero_corpus(id:str,key:str) -> list[dict]:
     zot = zotero.Zotero(id, 'user', key)
     corpus = zot.everything(zot.items(itemType='conferencePaper || journalArticle || preprint'))
-    corpus = [c for c in corpus if c['data']['abstractNote'] != '']
+    corpus = [c for c in corpus if c['data']['abstractNote']['extra'] != '']
     return corpus
 
 def get_paper_code_url(paper:arxiv.Result) -> str:
